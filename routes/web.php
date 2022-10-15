@@ -24,6 +24,8 @@ Route::group(
         Route::get('/', function () {
             return view('dashboard');
         });
+
+        Route::resource('grade', GradeController::class);
     });
 
 
