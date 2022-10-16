@@ -15,12 +15,12 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^9.27",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "4.0",
+        "laravel/ui": "^4.0",
         "livewire/livewire": "^2.10",
         "macsidigital/laravel-zoom": "^5.0",
         "mcamara/laravel-localization": "^1.7",
         "spatie/laravel-translatable": "^6.0",
-        "yoeunes/toastr": "^1.2"
+        "yoeunes/toastr": "^2.0"
     },
     "require-dev": {
         "spatie/laravel-ignition": "^1.0",
