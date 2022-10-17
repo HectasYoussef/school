@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Classrooms\ClassroomController;
 use App\Http\Controllers\Grades\GradeController;
+use App\Http\Controllers\Sections\SectionController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
@@ -45,6 +46,13 @@ Route::group(
     Route::post('Filter_Classes', [ClassroomController::class,"Filter_Classes"])->name('Filter_Classes');
 });
 
+Route::group(['namespace' => 'Sections'], function () {
+
+    Route::resource('Sections', SectionController::class);
+
+    Route::get('/classes/{id}', [SectionController::class,'getclasses']);
+
+});
 
 
 

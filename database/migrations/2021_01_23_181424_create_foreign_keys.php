@@ -14,6 +14,17 @@ class CreateForeignKeys extends Migration {
 						->onDelete('cascade')
 						->onUpdate('cascade');
 		});
+
+        Schema::table('sections', function(Blueprint $table) {
+            $table->foreign('Grade_id')->references('id')->on('Grades')
+                ->onDelete('cascade');
+        });
+
+            Schema::table('sections', function(Blueprint $table) {
+                $table->foreign('Class_id')->references('id')->on('Classrooms')
+                    ->onDelete('cascade');
+            });
+
 	}
 
 	public function down()
@@ -21,5 +32,12 @@ class CreateForeignKeys extends Migration {
 		Schema::table('Classrooms', function(Blueprint $table) {
 			$table->dropForeign('Classrooms_Grade_id_foreign');
 		});
+
+        Schema::table('sections', function(Blueprint $table) {
+            $table->dropForeign('sections_Grade_id_foreign');
+        });
+        Schema::table('sections', function(Blueprint $table) {
+            $table->dropForeign('sections_Class_id_foreign');
+        });
 	}
 }
