@@ -91,6 +91,7 @@ catch (\Exception $e){
    */
   public function update(StoreGrades $request)
   {
+
     try {
         $validated = $request->validated();
         $Grades = Grade::findOrFail($request->id);

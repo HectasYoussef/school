@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Classrooms\ClassroomController;
 use App\Http\Controllers\Grades\GradeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -37,7 +38,10 @@ Route::group(
             Route::resource('/Grades', GradeController::class);
         }
         );
-
+  //==============================Classrooms============================
+  Route::group(['namespace' => 'Classrooms'], function () {
+    Route::resource('Classrooms', ClassroomController::class);
+});
 
 
 
