@@ -55,11 +55,11 @@ Route::group(['namespace' => 'Sections'], function () {
 });
 
 
-
+Route::view('add_parent','livewire.show_Form');
     });
 
 
-    Route::view('add_parent','livewire.show_Form');
+
 
 
 

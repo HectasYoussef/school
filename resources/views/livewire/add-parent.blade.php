@@ -12,7 +12,7 @@
                 {{ $catchError }}
             </div>
         @endif
-</div>
+
 <div class="stepwizard">
     <div class="stepwizard-row setup-panel">
         <div class="stepwizard-step">
@@ -36,6 +36,7 @@
 
 
 @include('livewire.Father_Form')
+
 @include('livewire.Mother_Form')
 
 <div class="row setup-content {{ $currentStep != 3 ? 'displayNone' : '' }}" id="step-3">

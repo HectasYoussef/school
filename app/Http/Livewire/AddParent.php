@@ -2,23 +2,18 @@
 
 namespace App\Http\Livewire;
 
-use App\Mode\My_Parent;
-use App\Model\My_Parent as ModelMy_Parent;
+use App\Model\My_Parent;
 use App\Model\Nationalitie;
-use App\Model\ParentAttachment;
 use App\Model\Religion;
 use App\Model\Type_Blood;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
-use Livewire\WithFileUploads;
 
 class AddParent extends Component
 {
-    use WithFileUploads;
-
     public $successMessage = '';
 
-    public $catchError,$updateMode = false,$photos;
+    public $catchError;
 
     public $currentStep = 1,
 
@@ -44,10 +39,10 @@ class AddParent extends Component
             'Email' => 'required|email',
             'National_ID_Father' => 'required|string|min:10|max:10|regex:/[0-9]{9}/',
             'Passport_ID_Father' => 'min:10|max:10',
-            'Phone_Father' => 'regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'Phone_Father' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'National_ID_Mother' => 'required|string|min:10|max:10|regex:/[0-9]{9}/',
             'Passport_ID_Mother' => 'min:10|max:10',
-            'Phone_Mother' => 'regex:/^([0-9\s\-\+\(\)]*)$/|min:10'
+            'Phone_Mother' =>  'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
         ]);
     }
 
@@ -93,7 +88,7 @@ class AddParent extends Component
             'Name_Mother_en' => 'required',
             'National_ID_Mother' => 'required|unique:my__parents,National_ID_Mother,' . $this->id,
             'Passport_ID_Mother' => 'required|unique:my__parents,Passport_ID_Mother,' . $this->id,
-            'Phone_Mother' => 'required',
+            'Phone_Mother' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'Job_Mother' => 'required',
             'Job_Mother_en' => 'required',
             'Nationality_Mother_id' => 'required',
@@ -108,7 +103,7 @@ class AddParent extends Component
     public function submitForm(){
 
         try {
-            $My_Parent = new ModelMy_Parent();
+            $My_Parent = new My_Parent();
             // Father_INPUTS
             $My_Parent->Email = $this->Email;
             $My_Parent->Password = Hash::make($this->Password);
@@ -134,17 +129,8 @@ class AddParent extends Component
             $My_Parent->Blood_Type_Mother_id = $this->Blood_Type_Mother_id;
             $My_Parent->Religion_Mother_id = $this->Religion_Mother_id;
             $My_Parent->Address_Mother = $this->Address_Mother;
-            $My_Parent->save();
 
-            if (!empty($this->photos)){
-                foreach ($this->photos as $photo) {
-                    $photo->storeAs($this->National_ID_Father, $photo->getClientOriginalName(), $disk = 'parent_attachments');
-                    App\Http\Livewire\ParentAttachment::create([
-                        'file_name' => $photo->getClientOriginalName(),
-                        'parent_id' => ModelMy_Parent::latest()->first()->id,
-                    ]);
-                }
-            }
+            $My_Parent->save();
             $this->successMessage = trans('messages.success');
             $this->clearForm();
             $this->currentStep = 1;
