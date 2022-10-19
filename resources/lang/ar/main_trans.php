@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     'Dashboard'=>'الرئيسية',
     'Dashboard_page'=>'لوحة التحكم',
     'Main_title'=>'برنامج مورا سوفت لادارة المدارس',
@@ -12,9 +11,13 @@ return [
     'classes'=>'الصفوف',
     'List_classes'=>'قائمة الصفوف الدراسية',
     'sections'=>'الاقسام',
+    'List_sections'=>'قائمة الاقسام الدراسية',
     'students'=>'الطلاب',
     'Teachers'=>'المعلمين',
     'Parents'=>'اولياء الامور',
+    'List_Parents'=>'قائمة اولياء الامور',
+    'Add_Parent'=>'اضافة ولي امر',
+
     'Accounts'=>'الحسابات',
     'Attendance'=>'الحضور والغياب',
     'Exams'=>'الامتحانات',
